@@ -19,7 +19,7 @@ COPY "./driver/*" "./firmware/*" /tmp/
 #do installation
 RUN apt-get update  \
     && apt-get install -y openssh-server net-tools \
-    && apt-get autoremove
+    && apt-get autoremove \
 #do users root and pi    
     && useradd --create-home --shell /bin/bash pi \
     && echo 'root:root' | chpasswd \
