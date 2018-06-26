@@ -19,6 +19,7 @@ COPY "./driver/*" "./firmware/*" /tmp/
 #do installation
 RUN apt-get update  \
     && apt-get install -y openssh-server build-essential \
+    && apt-get install -y openssh-server net-tools \
 #do users root and pi    
     && useradd --create-home --shell /bin/bash pi \
     && echo 'root:root' | chpasswd \
@@ -27,6 +28,10 @@ RUN apt-get update  \
     && mkdir /var/run/sshd \
     && sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
+    && touch /usr/bin/modprobe \
+    && chmod +x /usr/bin/modprobe \
+    && touch /etc/modules \
+
 #install netX driver and netX ethernet supporting firmware
     && dpkg -i /tmp/netx-docker-pi-drv-1.1.3.deb \
     && dpkg -i /tmp/netx-docker-pi-pns-eth-3.12.0.8.deb \
@@ -40,15 +45,9 @@ RUN apt-get update  \
     && rm -rf /var/lib/apt/lists/*
 
 #install ssh, create user "pi" and make him sudo
-RUN apt-get update  \
-    && apt-get install -y openssh-server net-tools \
-    && mkdir /var/run/sshd \
-    && touch /usr/bin/modprobe \
-    && chmod +x /usr/bin/modprobe \
-    && touch /etc/modules \
-    && apt-get -yqq autoremove \
-    && apt-get -y clean \
-    && rm -rf /var/lib/apt/lists/*
+RUN 
+
+    
 
 
 
