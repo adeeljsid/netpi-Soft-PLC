@@ -62,7 +62,7 @@ EXPOSE 22 1217
 #set STOPSGINAL
 STOPSIGNAL SIGTERM
 
-#stop processing ARM emulation (comment out next line if not built as automated build on docker hub)
+#stop processing ARM emulation (comment out next line if not built as automated build on docker hub @haha)
 RUN [ "cross-build-end" ]
 
 
