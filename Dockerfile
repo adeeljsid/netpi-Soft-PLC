@@ -31,7 +31,6 @@ RUN apt-get update  \
     && touch /usr/bin/modprobe \
     && chmod +x /usr/bin/modprobe \
     && touch /etc/modules \
-
 #install netX driver and netX ethernet supporting firmware
     && dpkg -i /tmp/netx-docker-pi-drv-1.1.3.deb \
     && dpkg -i /tmp/netx-docker-pi-pns-eth-3.12.0.8.deb \
@@ -43,13 +42,6 @@ RUN apt-get update  \
     && apt-get -yqq autoremove \
     && apt-get -y clean \
     && rm -rf /var/lib/apt/lists/*
-
-#install ssh, create user "pi" and make him sudo
-RUN 
-
-    
-
-
 
 
 #set the entrypoint
